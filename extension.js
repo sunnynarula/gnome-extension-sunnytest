@@ -1,14 +1,14 @@
 const St = imports.gi.St; //For UI Elements such as button
 const Main = imports.ui.main; //For UI Elements such as panel
 const MainLoop = imports.mainloop;
+const GLib = imports.gi.GLib; //For running terminal style commands
 
 let panelButton, panelButtonText;
 let timeout; //Source reference for installing a timeout.
-let counter = 0; // An integer for counting stuff
 
 function setButtonText() {
-    counter++; //Count
-    panelButtonText.set_text( counter.toString() );//Change text of label
+    var [ok, out, err, exit] = GLib.spawn_command_line_sync('date'); //Run the command output will be stored in out
+    panelButtonText.set_text( out.toString() );//Change text of label
     return true; //If we return void or false loop will stop
 }
 
