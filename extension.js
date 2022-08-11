@@ -7,8 +7,15 @@ let panelButton, panelButtonText;
 let timeout; //Source reference for installing a timeout.
 
 function setButtonText() {
+    var arr = [];//Array init
+    //Get Date
     var [ok, out, err, exit] = GLib.spawn_command_line_sync('date'); //Run the command output will be stored in out
-    panelButtonText.set_text( out.toString() );//Change text of label
+    arr.push(out.toString().replace('\n', ''));//Get rid of newline
+    var [ok, out, err, exit] = GLib.spawn_command_line_sync('pgrep gedit'); //Run the command output will be stored in out
+    if(out.length > 0) {
+        arr.push('gedit is running');
+    }
+    panelButtonText.set_text( arr.join('    ') );//Join array and display as changed text of label
     return true; //If we return void or false loop will stop
 }
 
