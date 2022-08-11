@@ -1,0 +1,10 @@
+{
+    "description"   : "A test package for learning about gnome extensions",
+    "name" 	        : "Test Example",
+    "shell-version" : [
+        "42.2"
+    ],
+    "url"           : "www.test.com",
+    "uuid"          : "sunnytest@sunny.com",
+    "version"       : 1
+}
