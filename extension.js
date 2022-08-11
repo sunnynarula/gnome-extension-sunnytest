@@ -15,6 +15,12 @@ function setButtonText() {
     if(out.length > 0) {
         arr.push('gedit is running');
     }
+    var [ok, out, err, exit] = GLib.spawn_command_line_sync('/bin/bash -c "ifconfig | grep wlo"'); //In case we want to use piping we do it like this
+    if(out.length > 0) {
+        arr.push('online');
+    } else {
+        arr.push('offline');
+    }
     panelButtonText.set_text( arr.join('    ') );//Join array and display as changed text of label
     return true; //If we return void or false loop will stop
 }
